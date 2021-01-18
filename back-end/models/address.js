@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
   class Address extends Model {
     static associate(models) {
       Address.hasOne(models.Entity, { foreignKey: 'id_address' })
-      Address.hasOne(models.Supplier, { foreignKey: 'id' })
-      Address.hasOne(models.Project, { foreignKey: 'id_project' })
+      Address.hasOne(models.Supplier, { foreignKey: 'id_address' })
+      Address.hasOne(models.Project, { foreignKey: 'id_address' })
     }
   };
   Address.init({

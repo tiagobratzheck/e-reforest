@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Entity.belongsTo(models.Address, { foreignKey: 'id_address', as: 'address' })
       Entity.belongsTo(models.User, { foreignKey: 'id_user', as: 'user' })
-      Entity.hasMany(models.Project, { foreignKey: 'id_entity' })
+      Entity.hasMany(models.Project, { foreignKey: 'id_entity', as: 'project' })
     }
   };
   Entity.init({

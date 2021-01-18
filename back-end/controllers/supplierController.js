@@ -11,18 +11,18 @@ module.exports = {
             return res.json(supplier);
         }
         catch (error) {
-            console.log(error)
+            console.log(res.status(500).json({ msg: error.message }));
         }
     },
 
     async getSupplierById(req, res) {
-        const { sup_id } = req.params;
+        const { sup_id } = req.params.sup_id;
         try {
             const supplier = await Supplier.findOne({ where: { id: sup_id } });
             return res.json(supplier);
         }
         catch (e) {
-            console.log(e)
+            console.log(res.status(500).json({ msg: e.message }));
         }
     },
 
@@ -32,7 +32,33 @@ module.exports = {
             return res.json(supplier);
         }
         catch (e) {
-            console.log(e)
+            console.log(res.status(500).json({ msg: e.message }));
+        }
+    },
+
+    async updateSupplierById(req, res) {
+        try {
+            const supplier_updated = await Supplier.update({
+                descricao: req.body.descricao,
+                telefone: req.body.telefone,
+                email: req.body.email,
+                id_address: req.body.id_address                
+            }, { where: { id: req.params.sup_id } });
+            return res.json(supplier_updated);
+        }
+        catch (err) {
+            console.log(res.status(500).json({ msg: err.message }));
+        }
+    },
+
+    async deleteSupplier(req, res) {
+        const { id } = req.params.sup_id;
+        try {
+            const supplier_deleted = await Supplier.destroy({ where: { id: id } });
+            return res.json(supplier_deleted);
+        }
+        catch (err) {
+            console.log(res.status(500).json({ msg: err.message }));
         }
     }
   

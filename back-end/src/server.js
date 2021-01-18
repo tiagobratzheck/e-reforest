@@ -1,6 +1,5 @@
 const express = require('express');
 const routes = require('./routes');
-//require('../models/index')
 
 const app = express();
 
